@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./app.css";
+
 const PokemonRow = ({ pokemon, onClick }) => (
   <>
     <tr key={pokemon.id}>
@@ -53,7 +55,7 @@ class App extends React.Component {
     return (
       <div>
         <h3>Pokemon Search</h3>
-        <div>
+        <div className="pokemon-search">
           <div>
             <input
               value={this.state.filter}
