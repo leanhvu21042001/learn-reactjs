@@ -1,22 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
+import pokemonReducer from "../reducers/pokemon";
 
 export const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
-  const [filter, setFilter] = useState("");
-  const [pokemons, setPokemons] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(undefined);
-
-  const value = {
-    filter,
-    pokemons,
-    selectedItem,
-    setFilter,
-    setPokemons,
-    setSelectedItem,
-  };
+  const [state, dispatch] = useReducer(pokemonReducer, {
+    pokemons: [],
+    filter: "",
+    pokemonSelected: null,
+  });
 
   return (
-    <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>
+    <PokemonContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
+      {children}
+    </PokemonContext.Provider>
   );
 };

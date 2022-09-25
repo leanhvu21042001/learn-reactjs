@@ -1,25 +1,29 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 
 import PokemonInfo from "./components/PokemonInfo";
 import PokemonTable from "./components/PokemonTable";
 import PokemonFilter from "./components/PokemonFilter";
 
+import { SET_POKEMONS } from "./action-types/pokemon";
 import { PokemonContext } from "./contexts/pokemonContextProvider";
 
 import "./app.css";
 
 const App = () => {
-  const { setPokemons } = useContext(PokemonContext);
+  const { dispatch } = useContext(PokemonContext);
+
+  const getPokemon = useCallback(async () => {
+    const pokemon_url = "http://localhost:3000/pokemon.json";
+    const pokemonsRes = await (await fetch(pokemon_url)).json();
+    dispatch({
+      type: SET_POKEMONS,
+      payload: pokemonsRes,
+    });
+  }, [dispatch]);
 
   useEffect(() => {
-    const getPokemon = async () => {
-      const pokemon_url = "http://localhost:3000/pokemon.json";
-      const pokemonRes = await (await fetch(pokemon_url)).json();
-      setPokemons(pokemonRes);
-    };
-
     getPokemon();
-  }, [setPokemons]);
+  }, [getPokemon]);
 
   return (
     <div>

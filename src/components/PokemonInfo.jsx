@@ -3,18 +3,20 @@ import { useContext } from "react";
 import { PokemonContext } from "../contexts/pokemonContextProvider";
 
 const PokemonInfo = () => {
-  const { selectedItem } = useContext(PokemonContext);
+  const {
+    state: { pokemonSelected },
+  } = useContext(PokemonContext);
 
   return (
-    selectedItem && (
+    pokemonSelected && (
       <div>
-        <h2>{selectedItem.name.english}</h2>
+        <h2>{pokemonSelected.name.english}</h2>
         <table>
           <tbody>
-            {Object.keys(selectedItem.base).map((key) => (
+            {Object.keys(pokemonSelected.base).map((key) => (
               <tr key={key}>
                 <td>{key}</td>
-                <td>{selectedItem.base[key]}</td>
+                <td>{pokemonSelected.base[key]}</td>
               </tr>
             ))}
           </tbody>

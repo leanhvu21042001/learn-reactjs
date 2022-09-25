@@ -1,29 +1,35 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import PokemonRow from "./PokemonRow";
 
 import { filterByName } from "../helpers/pokemon";
 import { PokemonContext } from "../contexts/pokemonContextProvider";
 
-const CombinePokemonRow = (pokemons, setPokemonSelected) =>
-  pokemons.map((pokemon) => (
-    <PokemonRow
-      key={pokemon.id}
-      pokemon={pokemon}
-      onClick={(pokemon) => setPokemonSelected(pokemon)}
-    />
-  ));
+const CombinePokemonRow = (pokemons) =>
+  pokemons.map((pokemon) => <PokemonRow key={pokemon.id} pokemon={pokemon} />);
 
 const PokemonTable = () => {
-  const { filter, pokemons, setSelectedItem } = useContext(PokemonContext);
+  const {
+    state: { filter, pokemons },
+  } = useContext(PokemonContext);
 
-  const pokemonsFiltered = filterByName(pokemons, filter);
-  const pokemonSliced = pokemonsFiltered.slice(0, 20);
+  const pokemonsFiltered = useMemo(
+    () => filterByName(pokemons, filter),
+    [filter, pokemons]
+  );
 
-  const pokemonRows = CombinePokemonRow(pokemonSliced, setSelectedItem);
+  const pokemonSliced = useMemo(
+    () => pokemonsFiltered.slice(0, 20),
+    [pokemonsFiltered]
+  );
+
+  const pokemonRows = useMemo(
+    () => CombinePokemonRow(pokemonSliced),
+    [pokemonSliced]
+  );
 
   return (
-    <table width="100%">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
