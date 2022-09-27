@@ -1,47 +1,27 @@
-import React, { useCallback, useEffect } from "react";
-
-import { useDispatch } from "react-redux";
+import React from "react";
 
 import PokemonInfo from "./components/PokemonInfo";
 import PokemonTable from "./components/PokemonTable";
 import PokemonFilter from "./components/PokemonFilter";
 
-import { SET_POKEMONS } from "./action-types/pokemon";
-
 import "./app.css";
 
-const App = () => {
-  const dispatch = useDispatch();
-  const getPokemon = useCallback(async () => {
-    const pokemon_url = "http://localhost:3000/pokemon.json";
-    const pokemonsRes = await (await fetch(pokemon_url)).json();
-    dispatch({
-      type: SET_POKEMONS,
-      payload: pokemonsRes,
-    });
-  }, [dispatch]);
+const App = () => (
+  <div>
+    <h3>Pokemon Search</h3>
+    <div className="pokemon-search">
+      <div>
+        {/* Filter */}
+        <PokemonFilter />
 
-  useEffect(() => {
-    getPokemon();
-  }, [getPokemon]);
-
-  return (
-    <div>
-      <h3>Pokemon Search</h3>
-      <div className="pokemon-search">
-        <div>
-          {/* Filter */}
-          <PokemonFilter />
-
-          {/* Display Pokemons */}
-          <PokemonTable />
-        </div>
-
-        {/* Display Pokemon have seleted */}
-        <PokemonInfo />
+        {/* Display Pokemons */}
+        <PokemonTable />
       </div>
+
+      {/* Display Pokemon have seleted */}
+      <PokemonInfo />
     </div>
-  );
-};
+  </div>
+);
 
 export default App;

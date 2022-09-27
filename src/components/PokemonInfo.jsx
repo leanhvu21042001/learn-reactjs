@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+import useBearStore from "../store/zustand";
 
 const PokemonInfo = () => {
-  const pokemonSelected = useSelector((state) => state.pokemonSelected);
+  const pokemonSelected = useBearStore((state) => state.pokemonSelected);
 
   return (
     pokemonSelected && (

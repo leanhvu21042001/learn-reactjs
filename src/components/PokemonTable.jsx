@@ -1,15 +1,15 @@
 import PokemonRow from "./PokemonRow";
 
 import { filterByName } from "../helpers/pokemon";
-import { useSelector } from "react-redux";
+import useBearStore from "../store/zustand";
 
 const combinePokemonRow = (pokemons) =>
   pokemons.map((pokemon) => <PokemonRow key={pokemon.id} pokemon={pokemon} />);
 
 const PokemonTable = () => {
-  const filter = useSelector((state) => state.filter);
-  const pokemons = useSelector((state) => state.pokemons);
-
+  const filter = useBearStore((state) => state.filter);
+  const pokemons = useBearStore((state) => state.pokemons);
+  
   const pokemonSliced = filterByName(pokemons, filter).slice(0, 20);
   const pokemonRows = combinePokemonRow(pokemonSliced);
 

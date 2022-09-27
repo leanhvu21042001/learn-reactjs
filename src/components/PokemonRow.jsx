@@ -1,9 +1,7 @@
-import { useDispatch } from "react-redux";
-
-import { SET_SELECTED_POKEMON } from "../action-types/pokemon";
+import useBearStore from "../store/zustand";
 
 const PokemonRow = ({ pokemon }) => {
-  const dispatch = useDispatch();
+  const setPokemonSelected = useBearStore((state) => state.setPokemonSelected);
 
   return (
     <>
@@ -11,16 +9,7 @@ const PokemonRow = ({ pokemon }) => {
         <td>{pokemon.name.english}</td>
         <td>{pokemon.type.join(", ")}</td>
         <td>
-          <button
-            onClick={() =>
-              dispatch({
-                type: SET_SELECTED_POKEMON,
-                payload: pokemon,
-              })
-            }
-          >
-            More Information
-          </button>
+          <button onClick={() => setPokemonSelected(pokemon)}>More Information</button>
         </td>
       </tr>
     </>

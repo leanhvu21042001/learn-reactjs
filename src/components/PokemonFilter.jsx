@@ -1,16 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import { SET_FILTER } from "../action-types/pokemon";
+import useBearStore from "../store/zustand";
 
 const PokemonFilter = () => {
-  const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filter);
+  const filter = useBearStore((state) => state.filter);
+  const setFilter = useBearStore((state) => state.setFilter);
 
-  const handleInputChange = ({ target }) => {
-    dispatch({
-      type: SET_FILTER,
-      payload: target.value,
-    });
+  const handleInputChange = ({ target: { value } }) => {
+    setFilter(value);
   };
 
   return <input value={filter} onChange={handleInputChange} />;

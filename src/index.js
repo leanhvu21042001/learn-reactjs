@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { Provider } from "react-redux";
-
-import reduxStore from "./store/redux";
 import reportWebVitals from "./reportWebVitals";
 
 import App from "./App";
@@ -11,9 +8,7 @@ import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={reduxStore}>
-      <App />
-    </Provider>
+    <App />
   </React.StrictMode>
 );
 
