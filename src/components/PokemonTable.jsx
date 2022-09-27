@@ -1,20 +1,16 @@
-import { useContext } from "react";
-
 import PokemonRow from "./PokemonRow";
 
 import { filterByName } from "../helpers/pokemon";
-import { PokemonContext } from "../contexts/pokemonContextProvider";
+import { useSelector } from "react-redux";
 
 const combinePokemonRow = (pokemons) =>
   pokemons.map((pokemon) => <PokemonRow key={pokemon.id} pokemon={pokemon} />);
 
 const PokemonTable = () => {
-  const {
-    state: { filter, pokemons },
-  } = useContext(PokemonContext);
+  const filter = useSelector((state) => state.filter);
+  const pokemons = useSelector((state) => state.pokemons);
 
-  const pokemonsFiltered = filterByName(pokemons, filter);
-  const pokemonSliced = pokemonsFiltered.slice(0, 20);
+  const pokemonSliced = filterByName(pokemons, filter).slice(0, 20);
   const pokemonRows = combinePokemonRow(pokemonSliced);
 
   return (

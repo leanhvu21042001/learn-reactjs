@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 
 import { SET_SELECTED_POKEMON } from "../action-types/pokemon";
-import { PokemonContext } from "../contexts/pokemonContextProvider";
 
 const PokemonRow = ({ pokemon }) => {
-  const { dispatch } = useContext(PokemonContext);
+  const dispatch = useDispatch();
 
   return (
     <>

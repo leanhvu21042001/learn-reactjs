@@ -4,7 +4,14 @@ import {
   SET_SELECTED_POKEMON,
 } from "../action-types/pokemon";
 
-const pokemonReducer = (state, action) => {
+const pokemonReducer = (
+  state = {
+    pokemons: [],
+    filter: "",
+    pokemonSelected: null,
+  },
+  action
+) => {
   switch (action.type) {
     case SET_FILTER:
       return {
@@ -22,7 +29,7 @@ const pokemonReducer = (state, action) => {
         pokemonSelected: action.payload,
       };
     default:
-      throw new Error("No action");
+      return state;
   }
 };
 

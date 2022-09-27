@@ -1,17 +1,17 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
+
+import { useDispatch } from "react-redux";
 
 import PokemonInfo from "./components/PokemonInfo";
 import PokemonTable from "./components/PokemonTable";
 import PokemonFilter from "./components/PokemonFilter";
 
 import { SET_POKEMONS } from "./action-types/pokemon";
-import { PokemonContext } from "./contexts/pokemonContextProvider";
 
 import "./app.css";
 
 const App = () => {
-  const { dispatch } = useContext(PokemonContext);
-
+  const dispatch = useDispatch();
   const getPokemon = useCallback(async () => {
     const pokemon_url = "http://localhost:3000/pokemon.json";
     const pokemonsRes = await (await fetch(pokemon_url)).json();

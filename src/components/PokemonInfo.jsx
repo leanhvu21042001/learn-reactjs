@@ -1,11 +1,7 @@
-import { useContext } from "react";
-
-import { PokemonContext } from "../contexts/pokemonContextProvider";
+import { useSelector } from "react-redux";
 
 const PokemonInfo = () => {
-  const {
-    state: { pokemonSelected },
-  } = useContext(PokemonContext);
+  const pokemonSelected = useSelector((state) => state.pokemonSelected);
 
   return (
     pokemonSelected && (

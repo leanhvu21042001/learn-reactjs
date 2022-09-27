@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+
+import { Provider } from "react-redux";
+
+import reduxStore from "./store/redux";
 import reportWebVitals from "./reportWebVitals";
 
-import { PokemonProvider } from "./contexts/pokemonContextProvider";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <PokemonProvider>
+    <Provider store={reduxStore}>
       <App />
-    </PokemonProvider>
+    </Provider>
   </React.StrictMode>
 );
 
