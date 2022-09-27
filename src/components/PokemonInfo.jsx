@@ -1,25 +1,22 @@
-import useBearStore from "../store/zustand";
+import { observer } from "mobx-react";
 
-const PokemonInfo = () => {
-  const pokemonSelected = useBearStore((state) => state.pokemonSelected);
+import mobxStore from "../store/mobx";
 
-  return (
-    pokemonSelected && (
-      <div>
-        <h2>{pokemonSelected.name.english}</h2>
-        <table>
-          <tbody>
-            {Object.keys(pokemonSelected.base).map((key) => (
-              <tr key={key}>
-                <td>{key}</td>
-                <td>{pokemonSelected.base[key]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    )
+const PokemonInfo = () =>
+  mobxStore.pokemonSelected && (
+    <div>
+      <h2>{mobxStore.pokemonSelected.name.english}</h2>
+      <table>
+        <tbody>
+          {Object.keys(mobxStore.pokemonSelected.base).map((key) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{mobxStore.pokemonSelected.base[key]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
-};
 
-export default PokemonInfo;
+export default observer(PokemonInfo);

@@ -5,8 +5,8 @@
  * @returns [] list of pokemons
  */
 const filterByName = (pokemons, filter) => {
-  return pokemons.filter(({ name }) =>
-    name.english.toLowerCase().includes(filter.toLowerCase())
+  return pokemons.filter(({ name: { english } }) =>
+    english.toLowerCase().includes(filter.toLowerCase())
   );
 };
 

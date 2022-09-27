@@ -1,14 +1,13 @@
-import useBearStore from "../store/zustand";
+import { observer } from "mobx-react";
+
+import mobxStore from "../store/mobx";
 
 const PokemonFilter = () => {
-  const filter = useBearStore((state) => state.filter);
-  const setFilter = useBearStore((state) => state.setFilter);
-
   const handleInputChange = ({ target: { value } }) => {
-    setFilter(value);
+    mobxStore.setFilter(value);
   };
 
-  return <input value={filter} onChange={handleInputChange} />;
+  return <input value={mobxStore.filter} onChange={handleInputChange} />;
 };
 
-export default PokemonFilter;
+export default observer(PokemonFilter);

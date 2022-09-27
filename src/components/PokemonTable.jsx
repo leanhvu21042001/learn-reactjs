@@ -1,17 +1,14 @@
+import { observer } from "mobx-react";
+
 import PokemonRow from "./PokemonRow";
 
-import { filterByName } from "../helpers/pokemon";
-import useBearStore from "../store/zustand";
+import mobxStore from "../store/mobx";
 
 const combinePokemonRow = (pokemons) =>
   pokemons.map((pokemon) => <PokemonRow key={pokemon.id} pokemon={pokemon} />);
 
 const PokemonTable = () => {
-  const filter = useBearStore((state) => state.filter);
-  const pokemons = useBearStore((state) => state.pokemons);
-  
-  const pokemonSliced = filterByName(pokemons, filter).slice(0, 20);
-  const pokemonRows = combinePokemonRow(pokemonSliced);
+  const pokemonRows = combinePokemonRow(mobxStore.filteredPokemon);
 
   return (
     <table>
@@ -26,4 +23,4 @@ const PokemonTable = () => {
   );
 };
 
-export default PokemonTable;
+export default observer(PokemonTable);
