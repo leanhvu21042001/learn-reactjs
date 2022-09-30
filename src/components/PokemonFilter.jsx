@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import { observer } from "mobx-react";
 
 import mobxStore from "../store/mobx";
@@ -7,7 +8,15 @@ const PokemonFilter = () => {
     mobxStore.setFilter(value);
   };
 
-  return <input value={mobxStore.filter} onChange={handleInputChange} />;
+  return (
+    <TextField
+      style={{
+        width: "50%",
+      }}
+      value={mobxStore.filter}
+      onChange={handleInputChange}
+    />
+  );
 };
 
 export default observer(PokemonFilter);

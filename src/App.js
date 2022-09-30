@@ -5,23 +5,26 @@ import PokemonTable from "./components/PokemonTable";
 import PokemonFilter from "./components/PokemonFilter";
 
 import "./app.css";
+import { Grid, Typography, Box } from "@mui/material";
 
 const App = () => (
-  <div>
-    <h3>Pokemon Search</h3>
-    <div className="pokemon-search">
-      <div>
+  <Box className="app">
+    <Typography variant="h1">Pokemon Search</Typography>
+    <Grid container className="pokemon-search">
+      <Grid item xs={8}>
         {/* Filter */}
         <PokemonFilter />
 
         {/* Display Pokemons */}
         <PokemonTable />
-      </div>
+      </Grid>
 
-      {/* Display Pokemon have seleted */}
-      <PokemonInfo />
-    </div>
-  </div>
+      <Grid item xs={4}>
+        {/* Display Pokemon have seleted */}
+        <PokemonInfo />
+      </Grid>
+    </Grid>
+  </Box>
 );
 
 export default App;

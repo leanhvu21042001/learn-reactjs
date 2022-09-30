@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { observer } from "mobx-react";
 
 import mobxStore from "../store/mobx";
@@ -7,9 +8,12 @@ const PokemonRow = ({ pokemon }) => (
     <td>{pokemon.name.english}</td>
     <td>{pokemon.type.join(", ")}</td>
     <td>
-      <button onClick={() => mobxStore.setPokemonSelected(pokemon)}>
+      <Button
+        variant="outlined"
+        onClick={() => mobxStore.setPokemonSelected(pokemon)}
+      >
         More Information
-      </button>
+      </Button>
     </td>
   </tr>
 );
