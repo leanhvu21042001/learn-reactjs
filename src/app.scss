@@ -1,0 +1,6 @@
+.pokemon-search {
+  & > div {
+    float: left;
+    width: clamp(100px, 600px, 50%);
+  }
+}

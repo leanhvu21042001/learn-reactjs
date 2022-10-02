@@ -4,7 +4,7 @@ import PokemonInfo from "./components/PokemonInfo";
 import PokemonTable from "./components/PokemonTable";
 import PokemonFilter from "./components/PokemonFilter";
 
-import "./app.css";
+import "./app.scss";
 import { Grid, Typography, Box } from "@mui/material";
 
 const App = () => (
